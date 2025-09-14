@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dual Vacation Planner 2026</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
@@ -10,9 +11,9 @@
   <h1>Dual Vacation Planner 2026 - Zurich</h1>
 
   <div class="totals">
-    <label>Franz Total Vacation Days: <input type="number" id="total_franz" value="{{ vacation_days_allowed_franz }}"></label>
+    <label>Franz Total Days: <input type="number" id="total_franz" value="{{ vacation_days_allowed_franz }}"></label>
     <span>Remaining: <span id="remaining_franz">{{ vacation_days_remaining_franz }}</span></span>
-    <label>Polina Total Vacation Days: <input type="number" id="total_polina" value="{{ vacation_days_allowed_polina }}"></label>
+    <label>Polina Total Days: <input type="number" id="total_polina" value="{{ vacation_days_allowed_polina }}"></label>
     <span>Remaining: <span id="remaining_polina">{{ vacation_days_remaining_polina }}</span></span>
   </div>
 

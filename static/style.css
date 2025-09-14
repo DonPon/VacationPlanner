@@ -7,14 +7,25 @@ body {
 .container { max-width: 1100px; margin: auto; padding: 20px; }
 h1 { text-align: center; color: #00ffcc; }
 
-.totals { display: flex; justify-content: space-between; margin-bottom: 20px; }
-.totals label, .totals span { margin-right: 15px; }
+.totals { display: flex; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; }
+.totals label, .totals span { margin-right: 15px; margin-bottom: 8px; }
 
-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 th, td { padding: 12px; text-align: center; border-bottom: 1px solid #333; transition: all 0.3s; }
 tr:hover { background-color: #1e1e1e; }
 
-input { background-color: #1e1e1e; border: 1px solid #555; color: #fff; padding: 5px; border-radius: 4px; }
+input { background-color: #1e1e1e; border: 1px solid #555; color: #fff; padding: 5px; border-radius: 4px; width: 100%; max-width: 120px; box-sizing: border-box;}
 input:focus { border-color: #00ffcc; outline: none; }
 
 .end_franz, .end_polina, .total_off_franz, .total_off_polina { font-weight: bold; transition: all 0.3s; }
+
+@media(max-width: 768px){
+  th, td { font-size: 14px; padding: 8px; }
+}
