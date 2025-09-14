@@ -40,13 +40,27 @@ def calculate_blocks(blocks):
         start = datetime.strptime(block["start"], "%Y-%m-%d").date()
         end = add_workdays(start, block["used"])
         total_days_off = (end - start).days + 1
+
+        # Expansión de viaje
+        trip_start = start
+        trip_end = end
+        # Si inicia en lunes, sugerir viaje desde sábado anterior
+        if start.weekday() == 0:
+            trip_start = start - timedelta(days=2)
+        # Si termina en viernes, sugerir viaje hasta domingo siguiente
+        if end.weekday() == 4:
+            trip_end = end + timedelta(days=2)
+
         result.append({
             "name": block["name"],
-            "start_iso": block["start"],  # para <input type=date>
-            "start": start.strftime("%d-%b-%Y"),  # para mostrar bonito
+            "start_iso": block["start"],
+            "start": start.strftime("%d-%b-%Y"),
             "used": block["used"],
             "end": end.strftime("%d-%b-%Y"),
-            "total_days_off": total_days_off
+            "total_days_off": total_days_off,
+            "trip_start": trip_start.strftime("%d-%b-%Y"),
+            "trip_end": trip_end.strftime("%d-%b-%Y"),
+            "trip_total_days": (trip_end - trip_start).days + 1
         })
     return result
 
