@@ -10,19 +10,19 @@ HOLIDAYS = [
 HOLIDAYS = [datetime.strptime(d, "%Y-%m-%d").date() for d in HOLIDAYS]
 
 blocks_franz = [
-    {"name":"Easter/Mexico", "start":"2026-03-30", "used":11},
+    {"name":"Easter/Mexico", "start":"2026-03-28", "used":11},
     {"name":"Ascension", "start":"2026-05-15", "used":1},
     {"name":"Pentecost", "start":"2026-05-26", "used":4},
     {"name":"Autumn/Knabenschiessen", "start":"2026-09-15", "used":4},
-    {"name":"Christmas", "start":"2026-12-21", "used":4},
+    {"name":"Christmas", "start":"2026-12-19", "used":4},
 ]
 
 blocks_polina = [
-    {"name":"Easter/Mexico", "start":"2026-03-30", "used":7},
+    {"name":"Easter/Mexico", "start":"2026-03-28", "used":7},
     {"name":"Ascension", "start":"2026-05-15", "used":1},
     {"name":"Pentecost", "start":"2026-05-26", "used":4},
     {"name":"Autumn/Knabenschiessen", "start":"2026-09-15", "used":4},
-    {"name":"Christmas", "start":"2026-12-21", "used":4},
+    {"name":"Christmas", "start":"2026-12-19", "used":4},
 ]
 
 def add_workdays(start_date, workdays):
