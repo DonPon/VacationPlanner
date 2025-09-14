@@ -1,0 +1,20 @@
+body {
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s;
+}
+.container { max-width: 1100px; margin: auto; padding: 20px; }
+h1 { text-align: center; color: #00ffcc; }
+
+.totals { display: flex; justify-content: space-between; margin-bottom: 20px; }
+.totals label, .totals span { margin-right: 15px; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { padding: 12px; text-align: center; border-bottom: 1px solid #333; transition: all 0.3s; }
+tr:hover { background-color: #1e1e1e; }
+
+input { background-color: #1e1e1e; border: 1px solid #555; color: #fff; padding: 5px; border-radius: 4px; }
+input:focus { border-color: #00ffcc; outline: none; }
+
+.end_franz, .end_polina, .total_off_franz, .total_off_polina { font-weight: bold; transition: all 0.3s; }

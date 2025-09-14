@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dual Vacation Planner 2026</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <h1>Dual Vacation Planner 2026 - Zurich</h1>
+
+  <div class="totals">
+    <label>Franz Total Vacation Days: <input type="number" id="total_franz" value="{{ vacation_days_allowed_franz }}"></label>
+    <span>Remaining: <span id="remaining_franz">{{ vacation_days_remaining_franz }}</span></span>
+    <label>Polina Total Vacation Days: <input type="number" id="total_polina" value="{{ vacation_days_allowed_polina }}"></label>
+    <span>Remaining: <span id="remaining_polina">{{ vacation_days_remaining_polina }}</span></span>
+  </div>
+
+  <table id="vacation_table">
+    <thead>
+      <tr>
+        <th>Vacation Block</th>
+        <th>Start Date</th>
+        <th>End Date Franz</th>
+        <th>End Date Polina</th>
+        <th>Vacation Days Used Franz</th>
+        <th>Vacation Days Used Polina</th>
+        <th>Total Days Off Franz</th>
+        <th>Total Days Off Polina</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in range(blocks_franz|length) %}
+      <tr>
+        <td>{{ blocks_franz[i].name }}</td>
+        <td><input type="date" class="start_date" value="{{ blocks_franz[i].start_iso }}"></td>
+        <td class="end_franz">{{ blocks_franz[i].end }}</td>
+        <td class="end_polina">{{ blocks_polina[i].end }}</td>
+        <td><input type="number" class="used_franz" value="{{ blocks_franz[i].used }}"></td>
+        <td><input type="number" class="used_polina" value="{{ blocks_polina[i].used }}"></td>
+        <td class="total_off_franz">{{ blocks_franz[i].total_days_off }}</td>
+        <td class="total_off_polina">{{ blocks_polina[i].total_days_off }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
