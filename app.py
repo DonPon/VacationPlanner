@@ -20,7 +20,7 @@ blocks_franz = [
 blocks_polina = [
     {"name":"Easter/Mexico", "start":"2026-03-30", "used":7},
     {"name":"Ascension", "start":"2026-05-15", "used":1},
-    {"name":"Pentecost", "start":"2026-05-26", "used":3},
+    {"name":"Pentecost", "start":"2026-05-26", "used":4},
     {"name":"Autumn/Knabenschiessen", "start":"2026-09-15", "used":4},
     {"name":"Christmas", "start":"2026-12-21", "used":4},
 ]
