@@ -33,7 +33,10 @@
     <tbody>
       {% for i in range(blocks_franz|length) %}
       <tr>
-        <td>{{ blocks_franz[i].name }}</td>
+        <td>
+          {{ blocks_franz[i].name }}<br>
+          <small>{{ blocks_franz[i].holiday }}</small>
+        </td>
         <td><input type="date" class="start_date" value="{{ blocks_franz[i].start_iso }}"></td>
         <td class="end_franz">{{ blocks_franz[i].end }}</td>
         <td class="end_polina">{{ blocks_polina[i].end }}</td>

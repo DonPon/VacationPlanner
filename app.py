@@ -10,19 +10,19 @@ HOLIDAYS = [
 HOLIDAYS = [datetime.strptime(d, "%Y-%m-%d").date() for d in HOLIDAYS]
 
 blocks_franz = [
-    {"name":"Easter/Mexico", "start":"2026-03-28", "used":11},
-    {"name":"Ascension", "start":"2026-05-15", "used":1},
-    {"name":"Pentecost", "start":"2026-05-26", "used":4},
-    {"name":"Autumn/Knabenschiessen", "start":"2026-09-15", "used":4},
-    {"name":"Christmas", "start":"2026-12-19", "used":4},
+    {"name":"Easter/Mexico", "holiday":"(2026-04-03, 2026-04-06)", "start":"2026-03-28", "used":11},
+    {"name":"Ascension", "holiday":"(2026-05-14)", "start":"2026-05-15", "used":1},
+    {"name":"Pentecost", "holiday":"(2026-05-25)", "start":"2026-05-26", "used":4},
+    {"name":"Autumn/Knabenschiessen", "holiday":"(2026-09-14)", "start":"2026-09-15", "used":4},
+    {"name":"Christmas", "holiday":"(2026-12-25, 2026-12-26)", "start":"2026-12-19", "used":4},
 ]
 
 blocks_polina = [
-    {"name":"Easter/Mexico", "start":"2026-03-28", "used":7},
-    {"name":"Ascension", "start":"2026-05-15", "used":1},
-    {"name":"Pentecost", "start":"2026-05-26", "used":4},
-    {"name":"Autumn/Knabenschiessen", "start":"2026-09-15", "used":4},
-    {"name":"Christmas", "start":"2026-12-19", "used":4},
+    {"name":"Easter/Mexico", "holiday":"(2026-04-03, 2026-04-06)", "start":"2026-03-28", "used":7},
+    {"name":"Ascension", "holiday":"(2026-05-14)", "start":"2026-05-15", "used":1},
+    {"name":"Pentecost", "holiday":"(2026-05-25)", "start":"2026-05-26", "used":4},
+    {"name":"Autumn/Knabenschiessen", "holiday":"(2026-09-14)", "start":"2026-09-15", "used":4},
+    {"name":"Christmas", "holiday":"(2026-12-25, 2026-12-26)", "start":"2026-12-19", "used":4},
 ]
 
 def add_workdays(start_date, workdays):
@@ -60,7 +60,8 @@ def calculate_blocks(blocks):
             "total_days_off": total_days_off,
             "trip_start": trip_start.strftime("%d-%b-%Y"),
             "trip_end": trip_end.strftime("%d-%b-%Y"),
-            "trip_total_days": (trip_end - trip_start).days + 1
+            "trip_total_days": (trip_end - trip_start).days + 1,
+            "holiday": block.get("holiday", ""),  # Use .get() to provide a default value
         })
     return result
 
