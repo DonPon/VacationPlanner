@@ -18,11 +18,34 @@ table {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+.franz-col {
+  background-color: #2a3d4a; /* Subtle blue for Franz's columns */
+}
+
+.polina-col {
+  background-color: #4a2a3d; /* Subtle pink for Polina's columns */
+}
+
 th, td { padding: 12px; text-align: center; border-bottom: 1px solid #333; transition: all 0.3s; }
 tr:hover { background-color: #1e1e1e; }
 
 input { background-color: #1e1e1e; border: 1px solid #555; color: #fff; padding: 5px; border-radius: 4px; width: 100%; max-width: 120px; box-sizing: border-box;}
 input:focus { border-color: #00ffcc; outline: none; }
+
+#add_block_btn, .delete_btn {
+  background-color: #1e1e1e;
+  border: 1px solid #555;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#add_block_btn:hover, .delete_btn:hover {
+  background-color: #333;
+  border-color: #00ffcc;
+}
 
 .end_franz, .end_polina, .total_off_franz, .total_off_polina { font-weight: bold; transition: all 0.3s; }
 

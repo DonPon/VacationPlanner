@@ -25,6 +25,15 @@ blocks_polina = [
     {"name":"Christmas", "holiday":"(2026-12-25, 2026-12-26)", "start":"2026-12-19", "used":4},
 ]
 
+def count_workdays(start_date, end_date):
+    count = 0
+    current = start_date
+    while current <= end_date:
+        if current.weekday() < 5 and current not in HOLIDAYS:
+            count += 1
+        current += timedelta(days=1)
+    return count
+
 def add_workdays(start_date, workdays):
     current = start_date
     days_added = 0
@@ -37,8 +46,17 @@ def add_workdays(start_date, workdays):
 def calculate_blocks(blocks):
     result = []
     for block in blocks:
+        if not block.get("start"):
+            continue
         start = datetime.strptime(block["start"], "%Y-%m-%d").date()
-        end = add_workdays(start, block["used"])
+
+        if "end_date_str" in block and block["end_date_str"]:
+            end = datetime.strptime(block["end_date_str"], "%Y-%m-%d").date()
+            used = count_workdays(start, end)
+        else:
+            used = block["used"]
+            end = add_workdays(start, used)
+
         total_days_off = (end - start).days + 1
 
         # Expansión de viaje
@@ -55,8 +73,9 @@ def calculate_blocks(blocks):
             "name": block["name"],
             "start_iso": block["start"],
             "start": start.strftime("%d-%b-%Y"),
-            "used": block["used"],
+            "used": used,
             "end": end.strftime("%d-%b-%Y"),
+            "end_iso": end.strftime("%Y-%m-%d"),
             "total_days_off": total_days_off,
             "trip_start": trip_start.strftime("%d-%b-%Y"),
             "trip_end": trip_end.strftime("%d-%b-%Y"),
@@ -89,14 +108,21 @@ def update():
     data = request.json
     vacation_days_allowed_franz = data.get("vacation_days_allowed_franz", 25)
     vacation_days_allowed_polina = data.get("vacation_days_allowed_polina", 22)
-    updated_franz = data.get("blocks_franz", blocks_franz)
-    updated_polina = data.get("blocks_polina", blocks_polina)
+    updated_franz_blocks = []
+    for block in data.get("blocks_franz", []) :
+        if block.get("start"):
+            updated_franz_blocks.append({"name": block["name"], "start": block["start"], "end_date_str": block["end_date_str"]})
 
-    calc_franz = calculate_blocks(updated_franz)
-    calc_polina = calculate_blocks(updated_polina)
+    updated_polina_blocks = []
+    for block in data.get("blocks_polina", []) :
+        if block.get("start"):
+            updated_polina_blocks.append({"name": block["name"], "start": block["start"], "end_date_str": block["end_date_str"]})
 
-    remaining_franz = vacation_days_allowed_franz - sum(b["used"] for b in updated_franz)
-    remaining_polina = vacation_days_allowed_polina - sum(b["used"] for b in updated_polina)
+    calc_franz = calculate_blocks(updated_franz_blocks)
+    calc_polina = calculate_blocks(updated_polina_blocks)
+
+    remaining_franz = vacation_days_allowed_franz - sum(b["used"] for b in calc_franz)
+    remaining_polina = vacation_days_allowed_polina - sum(b["used"] for b in calc_polina)
 
     return jsonify({
         "blocks_franz": calc_franz,

@@ -22,12 +22,13 @@
       <tr>
         <th>Vacation Block</th>
         <th>Start Date</th>
-        <th>End Date Franz</th>
-        <th>End Date Polina</th>
-        <th>Vacation Days Used Franz</th>
-        <th>Vacation Days Used Polina</th>
-        <th>Total Days Off Franz</th>
-        <th>Total Days Off Polina</th>
+        <th class="franz-col">End Date Franz</th>
+        <th class="polina-col">End Date Polina</th>
+        <th class="franz-col">Vacation Days Used Franz</th>
+        <th class="polina-col">Vacation Days Used Polina</th>
+        <th class="franz-col">Total Days Off Franz</th>
+        <th class="polina-col">Total Days Off Polina</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -38,16 +39,18 @@
           <small>{{ blocks_franz[i].holiday }}</small>
         </td>
         <td><input type="date" class="start_date" value="{{ blocks_franz[i].start_iso }}"></td>
-        <td class="end_franz">{{ blocks_franz[i].end }}</td>
-        <td class="end_polina">{{ blocks_polina[i].end }}</td>
-        <td><input type="number" class="used_franz" value="{{ blocks_franz[i].used }}"></td>
-        <td><input type="number" class="used_polina" value="{{ blocks_polina[i].used }}"></td>
-        <td class="total_off_franz">{{ blocks_franz[i].total_days_off }}</td>
-        <td class="total_off_polina">{{ blocks_polina[i].total_days_off }}</td>
+        <td class="franz-col"><input type="date" class="end_franz" value="{{ blocks_franz[i].end_iso }}"></td>
+        <td class="polina-col"><input type="date" class="end_polina" value="{{ blocks_polina[i].end_iso }}"></td>
+        <td class="used_franz franz-col">{{ blocks_franz[i].used }}</td>
+        <td class="used_polina polina-col">{{ blocks_polina[i].used }}</td>
+        <td class="total_off_franz franz-col">{{ blocks_franz[i].total_days_off }}</td>
+        <td class="total_off_polina polina-col">{{ blocks_polina[i].total_days_off }}</td>
+        <td></td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+  <button id="add_block_btn">Add Vacation Block</button>
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
